@@ -28,13 +28,7 @@ const appRoutes: Routes = [
   {path:'login', component:LoginComponent}
 ];
 //Firebase  Credentials import
-export const firebaseConfig={
-  apiKey: "AIzaSyC66q5Jk4bgL_pgBkl2LN2SMIlOuJZ1OtE",
-  authDomain: "clientpanel-6bf6e.firebaseapp.com",
-  databaseURL: "https://clientpanel-6bf6e.firebaseio.com",
-  storageBucket: "clientpanel-6bf6e.appspot.com",
-  messagingSenderId: "62942913120"
-}
+
 @NgModule({
   declarations: [
     AppComponent,
