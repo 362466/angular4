@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//Angulare fire import
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase } from 'angularfire2/database-deprecated';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule,AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireAuthModule} from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
 
-//components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientsComponent } from './components/clients/clients.component';
@@ -19,16 +19,21 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-//Service Import
 import { ClientService } from './services/client.service';
 
-const appRoutes: Routes = [
-  {path:'', component:DashboardComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'login', component:LoginComponent}
+const appRoutes: Routes= [
+  {
+    path:'',component:DashboardComponent
+  },
+  {
+    path:'register',component:RegisterComponent
+  },
+  {
+    path:'login',component:LoginComponent
+  },{
+    path:'add-client',component:AddClientComponent
+  }
 ];
-//Firebase  Credentials import
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,11 +52,14 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebase,'clientpanel'),
+    AngularFireAuthModule,
+    FormsModule
+
   ],
   providers: [
-    AngularFireAuth,
     AngularFireDatabase,
+    AngularFireDatabaseModule,
     ClientService
   ],
   bootstrap: [AppComponent]
